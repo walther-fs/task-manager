@@ -15,10 +15,12 @@ function TaskItem({ task, toggleTask, deleteTask, editTask }) {
     toast.success("Tarea actualizada");
   };
 
-  return (    
+  return (
     <li
       role="listitem"
-      className={`task-item ${task.completed ? "completed" : ""} priority-${task.priority}`}
+      className={`task-item ${task.completed ? "completed" : ""} priority-${
+        task.priority
+      }`}
     >
       {isEditing ? (
         <div className="d-flex align-items-center gap-2">
@@ -29,22 +31,36 @@ function TaskItem({ task, toggleTask, deleteTask, editTask }) {
             aria-label="Editar texto de tarea"
             aria-required="true"
             aria-invalid={!newText.trim()}
-            onChange={(e) => {setNewText(e.target.value);}}
+            onChange={(e) => {
+              setNewText(e.target.value);
+            }}
             onKeyDown={(e) => e.key === "Enter" && handleSave()}
             className="task-edit-input"
           />
-          <select 
+          <select
             className="form-select form-select-sm task-priority-select"
             value={newPriority}
             onChange={(e) => setNewPriority(e.target.value)}
             aria-label="Cambiar prioridad de tarea"
-            >
-              <option value="alta">Alta</option>
-              <option value="media">Media</option>
-              <option value="baja">Baja</option>
-            </select> 
-            <button onClick={handleSave} className="btn btn-sm" aria-label="Guardar cambios"><i className="bi bi-floppy2-fill text-primary"></i></button>
-            <button onClick={() => setIsEditing(false)} className="btn btn-sm" aria-label="Cancelar cambios"><i className="bi bi-x-lg text-danger"></i></button>
+          >
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
+          <button
+            onClick={handleSave}
+            className="btn btn-sm"
+            aria-label="Guardar cambios"
+          >
+            <i className="bi bi-floppy2-fill text-primary"></i>
+          </button>
+          <button
+            onClick={() => setIsEditing(false)}
+            className="btn btn-sm"
+            aria-label="Cancelar cambios"
+          >
+            <i className="bi bi-x-lg text-danger"></i>
+          </button>
         </div>
       ) : (
         <div className="d-flex justify-content-between align-items-center w-100">
@@ -60,13 +76,25 @@ function TaskItem({ task, toggleTask, deleteTask, editTask }) {
               aria-label="Tarea completada"
               className="form-check-input"
             />
-            <button onClick={() => setIsEditing(true)} className="btn btn-sm" aria-label="Editar tarea"><i className="bi bi-pencil-fill text-primary"></i></button>
-            <button onClick={() => deleteTask(task.id)} className="btn btn-sm" aria-label="Eliminar tarea"><i className="bi bi-trash3-fill text-danger"></i></button>
+            <button
+              onClick={() => setIsEditing(true)}
+              className="btn btn-sm"
+              aria-label="Editar tarea"
+            >
+              <i className="bi bi-pencil-fill text-primary"></i>
+            </button>
+            <button
+              onClick={() => deleteTask(task.id)}
+              className="btn btn-sm"
+              aria-label="Eliminar tarea"
+            >
+              <i className="bi bi-trash3-fill text-danger"></i>
+            </button>
           </div>
         </div>
       )}
     </li>
-  );  
+  );
 }
 
 export default TaskItem;

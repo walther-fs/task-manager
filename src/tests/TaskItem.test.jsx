@@ -2,11 +2,23 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import TaskItem from "../components/TaskItem";
 
 describe("TaskItem", () => {
-  const task = { id: 1, text: "Tarea de prueba", priority: "alta", completed: false };
+  const task = {
+    id: 1,
+    text: "Tarea de prueba",
+    priority: "alta",
+    completed: false,
+  };
 
   it("marca como completada al hacer click en checkbox", () => {
     const toggleTask = vi.fn();
-    render(<TaskItem task={task} toggleTask={toggleTask} deleteTask={() => {}} editTask={() => {}} />);
+    render(
+      <TaskItem
+        task={task}
+        toggleTask={toggleTask}
+        deleteTask={() => {}}
+        editTask={() => {}}
+      />
+    );
 
     fireEvent.click(screen.getByRole("checkbox"));
 
@@ -15,7 +27,14 @@ describe("TaskItem", () => {
 
   it("activa modo edición y guarda cambios", () => {
     const editTask = vi.fn();
-    render(<TaskItem task={task} toggleTask={() => {}} deleteTask={() => {}} editTask={editTask} />);
+    render(
+      <TaskItem
+        task={task}
+        toggleTask={() => {}}
+        deleteTask={() => {}}
+        editTask={editTask}
+      />
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /editar tarea/i }));
 
@@ -29,7 +48,14 @@ describe("TaskItem", () => {
 
   it("elimina tarea al hacer click en borrar", () => {
     const deleteTask = vi.fn();
-    render(<TaskItem task={task} toggleTask={() => {}} deleteTask={deleteTask} editTask={() => {}} />);
+    render(
+      <TaskItem
+        task={task}
+        toggleTask={() => {}}
+        deleteTask={deleteTask}
+        editTask={() => {}}
+      />
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /eliminar tarea/i }));
 

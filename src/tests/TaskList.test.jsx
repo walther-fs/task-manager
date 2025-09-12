@@ -3,7 +3,14 @@ import TaskList from "../components/TaskList";
 
 describe("TaskList", () => {
   it("muestra mensaje si no hay tareas", () => {
-    render(<TaskList tasks={[]} toggleTask={() => {}} deleteTask={() => {}} editTask={() => {}} />);
+    render(
+      <TaskList
+        tasks={[]}
+        toggleTask={() => {}}
+        deleteTask={() => {}}
+        editTask={() => {}}
+      />
+    );
     expect(screen.getByText(/no hay tareas/i)).toBeInTheDocument();
   });
 
@@ -13,7 +20,14 @@ describe("TaskList", () => {
       { id: 2, text: "Tarea 2", priority: "baja", completed: true },
     ];
 
-    render(<TaskList tasks={tasks} toggleTask={() => {}} deleteTask={() => {}} editTask={() => {}} />);
+    render(
+      <TaskList
+        tasks={tasks}
+        toggleTask={() => {}}
+        deleteTask={() => {}}
+        editTask={() => {}}
+      />
+    );
 
     expect(screen.getByText(/tarea 1/i)).toBeInTheDocument();
     expect(screen.getByText(/tarea 2/i)).toBeInTheDocument();

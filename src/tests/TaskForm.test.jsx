@@ -19,7 +19,6 @@ describe("TaskForm", () => {
       target: { value: "Tarea sin prioridad" },
     });
     fireEvent.click(screen.getByRole("button", { name: /agregar/i }));
-
     expect(mockAddTask).not.toHaveBeenCalled();
   });
 
